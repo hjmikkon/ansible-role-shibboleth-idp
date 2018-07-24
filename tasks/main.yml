@@ -32,6 +32,7 @@
   unarchive:
     src: /tmp/idp_snapshot/idp-distribution/target/shibboleth-identity-provider-3.4.0-SNAPSHOT.tar.gz
     dest: "{{ shibbolethidp_dst_dir }}"
+    remote_src: True
   when: snapshot_result.stat.exists == True
 
 - name: Shibboleth IdP | Templates | copy
