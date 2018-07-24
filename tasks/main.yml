@@ -16,9 +16,9 @@
   package: name={{ item }} state={{ shibbolethidp_state }}
   with_items: "{{ shibbolethidp_packages }}"
   
-- name: Check if 3.4.0-SNAPSHOT exists
+- name: Check if local copy of distribution archive exists
   stat:
-    path: /tmp/idp_snapshot/idp-distribution/target/shibboleth-identity-provider-3.4.0-SNAPSHOT.tar.gz
+    path: /tmp/idp_snapshot/idp-distribution/target/shibboleth-identity-provider-{{ shibbolethidp_version }}.tar.gz
   register: snapshot_result
 
 - name: Shibboleth IdP | Download | Unarchive
@@ -28,9 +28,9 @@
     remote_src: True
   when: snapshot_result.stat.exists == False
 
-- name: Shibboleth IdP | Existing 3.4.0-SNAPSHOT | Unarchive
+- name: Shibboleth IdP | Existing copy | Unarchive
   unarchive:
-    src: /tmp/idp_snapshot/idp-distribution/target/shibboleth-identity-provider-3.4.0-SNAPSHOT.tar.gz
+    src: /tmp/idp_snapshot/idp-distribution/target/shibboleth-identity-provider-{{ shibbolethidp_version }}.tar.gz
     dest: "{{ shibbolethidp_dst_dir }}"
     remote_src: True
   when: snapshot_result.stat.exists == True
