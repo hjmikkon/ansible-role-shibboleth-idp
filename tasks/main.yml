@@ -18,7 +18,7 @@
   
 - name: Check if local copy of distribution archive exists
   stat:
-    path: /tmp/idp_snapshot/idp-distribution/target/shibboleth-identity-provider-{{ shibbolethidp_version }}.tar.gz
+    path: /tmp/shibboleth-identity-provider-{{ shibbolethidp_version }}.tar.gz
   register: snapshot_result
 
 - name: Shibboleth IdP | Download | Unarchive
